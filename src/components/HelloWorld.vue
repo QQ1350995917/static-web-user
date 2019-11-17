@@ -80,6 +80,33 @@
         </a>
       </li>
     </ul>
+    <h2>static-web-user</h2>
+    <ul>
+      <li>
+        <a
+          href="SignIn"
+          target="_blank"
+        >
+          Sing In
+        </a>
+      </li>
+      <li>
+        <a
+          href=""
+          target="_blank"
+        >
+          Sing Up
+        </a>
+      </li>
+      <li>
+        <a
+          href=""
+          target="_blank"
+        >
+          Mine
+        </a>
+      </li>
+    </ul>
   </div>
 </template>
 
