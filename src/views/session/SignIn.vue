@@ -13,27 +13,80 @@
     </el-form-item>
   </el-form>
 </template>
-
 <script>
+  export default {
+    name: "SignIn",
+    data() {
+      return {
+        loginForm: {
+          username: '',
+          password: '',
+        },
+        loginRule: {
+          username: [{required: true, message: '请输入账号', trigger: 'blur'}],
+          password: [{required: true, message: '请输入密码', trigger: 'blur'}]
+        },
+        checked: false
+      }
+    },
+
+
+    methods: {
+      handleSubmit(event){
+        this.$refs.loginForm.validate((valid) => {
+          if (valid) {
+            this.logining = true;
+            if (this.loginForm.username === 'admin' &&
+              this.loginForm.password === '123456') {
+              this.logining = false;
+              sessionStorage.setItem('user', this.loginForm.username);
+              this.$router.push({path: '/'});
+            } else {
+              this.logining = false;
+              this.$alert('用户名或密码错误!', 'info', {
+                confirmButtonText: 'ok'
+              })
+            }
+          } else {
+            console.log('error submit!');
+            return false;
+          }
+        })
+      },
+      //登录
+      login: function () {
+        //这里使用的是固定的用户名和密码。admin/111111
+
+        //校验密码
+        if (this.form.pw !== '111111') {
+          this.$message({
+            type: "danger",
+            message: "用户名或密码错误!"
+          });
+          return;
+        }
+        //校验用户
+        if (this.form.id === 'admin') {
+          this.modelShow = false;
+          //把登录数据写入到session
+          if (window.sessionStorage) {
+            sessionStorage.setItem("is_login", "true");
+          }
+        } else {
+          this.$message({
+            type: "danger",
+            message: "用户名或密码错误!"
+          });
+        }
+      },
+    },
+  }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .el-input {
-    width:300px;
+  label.el-checkbox.rememberme {
+    margin: 0px 0px 15px;
+    text-align: left;
   }
-  h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+
 </style>

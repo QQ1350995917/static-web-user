@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
-import SignIn from '@/components/session/SignIn'
-import SignUp from '@/components/session/SignUp'
-import MineIndex from '@/components/mine/Index'
+import SignIn from '@/views/session/SignIn'
+import SignUp from '@/views/session/SignUp'
+import MineIndex from '@/views/mine/Index'
 
 Vue.use(Router)
 

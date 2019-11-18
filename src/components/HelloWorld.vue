@@ -83,28 +83,13 @@
     <h2>static-web-user</h2>
     <ul>
       <li>
-        <a
-          href="SignIn"
-          target="_blank"
-        >
-          Sing In
-        </a>
+        <router-link tag='a' :to="'/signin'" target="_blank">Sign In</router-link>
       </li>
       <li>
-        <a
-          href=""
-          target="_blank"
-        >
-          Sing Up
-        </a>
+        <router-link tag='a' :to="'/signup'" target="_blank">Sign Up</router-link>
       </li>
       <li>
-        <a
-          href=""
-          target="_blank"
-        >
-          Mine
-        </a>
+        <router-link tag='a' :to="'/mine'" target="_blank">Mine</router-link>
       </li>
     </ul>
   </div>
