@@ -28,6 +28,21 @@ export default new Router({
       path: '/mine',
       name: 'MineIndex',
       component: MineIndex
+    },
+    {
+      path: '/mine/org',
+      name: 'MineIndex',
+      component: MineIndex
+    },
+    {
+      path: '/mine/org/create',
+      name: 'MineIndex',
+      component: MineIndex
+    },
+    {
+      path: '/mine/org/search',
+      name: 'MineIndex',
+      component: MineIndex
     }
   ]
 })
