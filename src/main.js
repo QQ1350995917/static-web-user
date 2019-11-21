@@ -5,6 +5,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import '@/styles/index.scss'
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 
@@ -12,6 +13,20 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
-  components: { App },
+  components: {App},
   template: '<App/>'
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.path === '/signin') {
+    sessionStorage.removeItem('user')
+  }
+  var user = sessionStorage.getItem('user')
+  if (!user && to.path !== '/signin') {
+    next({
+      path: '/signin'
+    })
+  } else {
+    next()
+  }
 })
