@@ -1,12 +1,12 @@
 <template>
-  <div id="mine">
-    SearchOrg
-  </div>
+  <el-container>
+    List
+  </el-container>
 </template>
 
 <script>
 export default {
-  name: 'SearchOrg',
+  name: 'List',
   data () {
     return {
       msg: ''

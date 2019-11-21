@@ -1,12 +1,12 @@
 <template>
-  <div id="mine">
-    MyOrg
-  </div>
+  <el-container>
+    <h1>Dashboard</h1>
+  </el-container>
 </template>
 
 <script>
 export default {
-  name: 'MyOrg',
+  name: 'Dashboard',
   data () {
     return {
       msg: ''

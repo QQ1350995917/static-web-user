@@ -1,15 +1,15 @@
 <template>
-  <div id="mine">
-    OrgPend
-  </div>
+  <el-container>
+    Joined
+  </el-container>
 </template>
 
 <script>
 export default {
-  name: 'OrgPend',
+  name: 'Joined',
   data () {
     return {
-      msg: ''
+      msg: 'Joined'
     }
   }
 }

@@ -1,15 +1,15 @@
 <template>
-  <el-container>
-    Indexsss
-  </el-container>
+  <div id="mine">
+    Apply
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'Index',
+  name: 'Apply',
   data () {
     return {
-      msg: ''
+      msg: 'Apply'
     }
   }
 }

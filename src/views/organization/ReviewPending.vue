@@ -1,22 +1,20 @@
 <template>
   <el-container>
-    Mine
+    ReviewPending
   </el-container>
 </template>
 
 <script>
   export default {
-    name: 'Mine',
-    data() {
+    name: 'ReviewPending',
+    data () {
       return {
-
+        msg: ''
       }
-    },
-    mounted: function () {
-    },
+    }
   }
 </script>
 
-<style>
+<style scoped>
 
 </style>

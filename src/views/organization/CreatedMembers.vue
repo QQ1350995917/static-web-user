@@ -1,22 +1,20 @@
 <template>
   <el-container>
-    Mine
+    CreatedMembers
   </el-container>
 </template>
 
 <script>
   export default {
-    name: 'Mine',
-    data() {
+    name: 'Created',
+    data () {
       return {
-
+        msg: 'Created'
       }
-    },
-    mounted: function () {
-    },
+    }
   }
 </script>
 
-<style>
+<style scoped>
 
 </style>

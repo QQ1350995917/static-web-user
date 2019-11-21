@@ -1,18 +1,18 @@
 <template>
   <el-container>
-    Indexsss
+    Created
   </el-container>
 </template>
 
 <script>
-export default {
-  name: 'Index',
-  data () {
-    return {
-      msg: ''
+  export default {
+    name: 'Created',
+    data () {
+      return {
+        msg: 'Created'
+      }
     }
   }
-}
 </script>
 
 <style scoped>
