@@ -1,14 +1,14 @@
 <template>
-  <div>
+  <div style="height: 100%;">
     <div class="app-side-logo">
       <img src="@/assets/logo.png"
            :width="collapse ? '60' : '60'"
            height="60" />
     </div>
 
-    <el-menu class="el-menu-vertical-demo"
+    <el-menu class="el-menu-vertical-demo" style="height: 100%;"
              :default-active="defaultActive"
-             router
+             router unique-opened
              :collapse="collapse">
       <SidebarItem v-for="(item, idx) in routes"
                    :subroute="item"

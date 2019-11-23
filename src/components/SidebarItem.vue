@@ -20,14 +20,14 @@
   <!-- 当前节点不含子节点且非隐藏 -->
   <el-menu-item style="font-weight: 400"
                 v-else-if="!subroute.hidden"
-                :index="genPath(fatherpath, subroute.path)"
-  >{{subroute.name}}
+                :index="genPath(fatherpath, subroute.path)">
+    {{subroute.name}}
   </el-menu-item>
 
   <el-menu-item style="font-weight: 400"
                 v-else
-                :index="genPath(fatherpath, subroute.path)"
-  >{{ subroute.name }}
+                :index="genPath(fatherpath, subroute.path)">
+    {{ subroute.name }}
   </el-menu-item>
 </template>
 <script>
@@ -66,15 +66,10 @@
         path = path[0] === '/' ? path : '/'+path
         return path
       },
-      handleOpen: function(key, keyPath) {
-        console.log(key, keyPath)
-      },
-      handleClose: function(key, keyPath) {
-        console.log(key, keyPath)
-      }
+
     },
     mounted: function(){
-      console.log('sidebar routes: ', this.routes)
+//      console.log('sidebar routes: ', this.subroute)
     }
   }
 </script>

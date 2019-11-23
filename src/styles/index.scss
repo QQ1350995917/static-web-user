@@ -42,9 +42,11 @@ body {
     }
     &-collapsed {
       width: 66px!important;
+      height: 100%;
     }
     &-expanded {
       width: 230px!important;
+      height: 100%;
     }
   }
   &-header {

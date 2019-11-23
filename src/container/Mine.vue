@@ -1,5 +1,5 @@
 <template>
-  <el-container>
+  <el-container style="height: 100%;">
     <el-aside class="app-side app-side-left"
               :class="isCollapse ? 'app-side-collapsed' : 'app-side-expanded'">
       <Sidebar :collapse="isCollapse" :routes="$router.options.routes[0].children"/>
@@ -59,16 +59,7 @@
             sessionStorage.removeItem('user');
             this.$router.push('/signin');
           })
-          .catch((e) => { console.log(e) });
-      },
-      handleOpen(key, keyPath) {
-        console.log(key, keyPath);
-      },
-      handleClose(key, keyPath) {
-        console.log(key, keyPath);
-      },
-      handleSelect(key, keyPath) {
-        console.log(key, keyPath);
+          .catch((e) => { console.log('exception' + e) });
       },
     },
     mounted: function () {

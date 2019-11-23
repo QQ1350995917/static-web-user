@@ -1,7 +1,5 @@
 <template>
-  <el-container>
-    Index
-  </el-container>
+  <router-view/>
 </template>
 
 <script>
