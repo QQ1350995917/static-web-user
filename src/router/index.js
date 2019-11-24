@@ -38,6 +38,20 @@ export default new Router({
             {path: 'review', name: 'Review', component: OrganizationReview},
           ]
         },
+        {
+          path: 'HornBook', name: 'HornBook', component: Organization,
+          children: [
+            {path: 'list', name: 'List', component: OrganizationList},
+            {path: 'created', name: 'Created', component: OrganizationOfCreated},
+          ]
+        },
+        {
+          path: 'Baby', name: 'Baby', component: Organization,
+          children: [
+            {path: 'list', name: 'List', component: OrganizationList},
+            {path: 'upload', name: 'upload', component: OrganizationOfCreated},
+          ]
+        },
       ]
     },
     {
