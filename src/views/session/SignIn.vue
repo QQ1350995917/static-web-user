@@ -22,7 +22,6 @@
   export default {
     data(){
       return {
-        logining: false,
         signInForm: {
           identify: '18511694468',
           password: '123456',
@@ -36,12 +35,10 @@
     },
     methods: {
       handleSubmit(event){
-        this.$refs.ruleForm.validate((valid) => {
+        this.$refs.signInForm.validate((valid) => {
           if (valid) {
-            this.logining = true;
             signin(this.signInForm.identify, this.signInForm.password)
               .then((res) => {
-                this.logining = false;
                 if (res.meta.code === 200) {
                   sessionStorage.setItem('token', res.data.token);
                   sessionStorage.setItem('uid', res.data.uid);

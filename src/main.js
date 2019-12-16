@@ -26,9 +26,11 @@ router.beforeEach((to, from, next) => {
   }
   var user = sessionStorage.getItem('user')
   if (!user && to.path !== '/signin') {
-    next({
-      path: '/signin'
-    })
+    next()
+    // 登录打开验证
+    // next({
+    //   path: '/signin'
+    // })
   } else {
     next()
   }

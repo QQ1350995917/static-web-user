@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
+import Books from '@/views/article/Books'
+import BookDetail from '@/views/article/BookDetail'
+import ArticleDetail from '@/views/article/ArticleDetail'
 import SignIn from '@/views/session/SignIn'
 import SignUp from '@/views/session/SignUp'
 import LayoutMine from '@/container/Mine'
@@ -37,27 +40,28 @@ export default new Router({
             {path: 'apply', name: 'Apply', component: OrganizationOfApply},
             {path: 'review', name: 'Review', component: OrganizationReview},
           ]
-        },
-        {
-          path: 'HornBook', name: 'HornBook', component: Organization,
-          children: [
-            {path: 'list', name: 'List', component: OrganizationList},
-            {path: 'created', name: 'Created', component: OrganizationOfCreated},
-          ]
-        },
-        {
-          path: 'Baby', name: 'Baby', component: Organization,
-          children: [
-            {path: 'list', name: 'List', component: OrganizationList},
-            {path: 'upload', name: 'upload', component: OrganizationOfCreated},
-          ]
-        },
+        }
       ]
     },
     {
       path: '/',
       name: 'HelloWorld',
       component: HelloWorld
+    },
+    {
+      path: '/books',
+      name: 'Books',
+      component: Books
+    },
+    {
+      path: '/bookDetail',
+      name: 'BookDetail',
+      component: BookDetail
+    },
+    {
+      path: '/articleDetail',
+      name: 'ArticleDetail',
+      component: ArticleDetail
     },
     {
       path: '/signin',

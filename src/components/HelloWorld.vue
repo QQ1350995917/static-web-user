@@ -92,6 +92,12 @@
         <router-link tag='a' :to="'/mine'" target="_blank">Mine</router-link>
       </li>
     </ul>
+    <h2>application</h2>
+    <ul>
+      <li>
+        <router-link tag='a' :to="'/books'" target="_blank">Article</router-link>
+      </li>
+    </ul>
   </div>
 </template>
 
