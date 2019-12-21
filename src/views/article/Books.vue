@@ -6,7 +6,7 @@
       </div>
       <div v-for="book in books" class="text item" style="text-align: center">
         <router-link :to="{path:'bookDetail',query:{bookId:book.id}}">
-          <el-button style="width: 98%;margin-bottom: 10px">
+          <el-button style="width: 98%;margin-bottom: 10px;font-size: 4rem">
             {{book.title}}
           </el-button>
         </router-link>

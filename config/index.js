@@ -11,7 +11,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/': {
-        target: 'http://localhost:11221',
+        target: 'http://192.168.31.206:11221',
         changeOrigin: true,
         onProxyReq: function (proxyReq, req, res) {
           //实在不知道代理后的路径，可以在这里打印出出来看看
@@ -19,31 +19,31 @@ module.exports = {
         }
       },
       '/account': {
-        target: 'http://localhost:11221',
+        target: 'http://192.168.31.206:11221',
         changeOrigin: true,
         pathRewrite: {
           '^/account': '/account'
         },
         onProxyReq: function (proxyReq, req, res) {
           //实在不知道代理后的路径，可以在这里打印出出来看看
-          console.log("原路径：" + req.originalUrl, "代理路径：" + req.path)
+          console.log("account原路径：" + req.originalUrl, "代理路径：" + req.path)
         }
       },
       '/article': {
-        target: 'http://localhost:11221',
+        target: 'http://192.168.31.206:11221',
         changeOrigin: true,
         pathRewrite: {
           '^/article': '/article'
         },
         onProxyReq: function (proxyReq, req, res) {
           //实在不知道代理后的路径，可以在这里打印出出来看看
-          console.log("原路径：" + req.originalUrl, "代理路径：" + req.path)
+          console.log("article原路径：" + req.originalUrl, "代理路径：" + req.path)
         }
       }
     },
 
     // Various Dev Server settings
-    host: 'localhost', // can be overwritten by process.env.HOST
+    host: '0.0.0.0', // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,

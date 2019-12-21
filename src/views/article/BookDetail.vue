@@ -6,7 +6,7 @@
       </div>
       <div v-for="article in articles" class="text item" style="text-align: center">
         <router-link :to="{path:'articleDetail',query:{bookId:article.bookId,articleId:article.id}}">
-          <el-button style="width: 98%;margin-bottom: 10px">
+          <el-button style="width: 98%;margin-bottom: 10px;font-size: 2rem">
             {{article.title}}
           </el-button>
         </router-link>

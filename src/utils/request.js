@@ -12,7 +12,7 @@ const source = cancelToken.source()
 // 创建 axios 实例
 const service = axios.create({
   cancelToken: source.token,
-  timeout: 6000,  // 请求超时时间
+  timeout: 12000,  // 请求超时时间
 })
 
 // request 拦截器

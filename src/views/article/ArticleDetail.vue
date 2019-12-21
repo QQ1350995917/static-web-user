@@ -2,13 +2,14 @@
   <el-container>
     <el-card class="box-card" style="width: 100%;overflow: scroll">
       <div slot="header" class="clearfix">
-        <span>{{article.title}}</span>
+        <span style="font-size: 4rem">{{article.title}}</span>
       </div>
       <div v-for="paragraph in article.paragraphs" class="text item">
-        <p style="width: 98%;margin-bottom: 10px">
+        <p style="width: 98%;margin-bottom: 10px;font-size: 4rem">
           {{paragraph}}
         </p>
       </div>
+      <
     </el-card>
   </el-container>
 </template>
