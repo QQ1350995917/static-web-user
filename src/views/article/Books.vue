@@ -1,17 +1,25 @@
 <template>
   <el-container>
-    <el-card class="box-card" style="width: 100%;overflow: scroll">
-      <div slot="header" class="clearfix">
-        <span></span>
+    <el-header>
+      <div style="margin-top: 15px;">
+        <el-input placeholder="Please input" v-model="input" class="input-with-select">
+          <el-button slot="append" icon="el-icon-search"></el-button>
+        </el-input>
       </div>
-      <div v-for="book in books" class="text item" style="text-align: center">
-        <router-link :to="{path:'bookDetail',query:{bookId:book.id}}">
-          <el-button style="width: 98%;margin-bottom: 10px;font-size: 4rem">
-            {{book.title}}
-          </el-button>
-        </router-link>
-      </div>
-    </el-card>
+    </el-header>
+    <el-main>
+      <el-row :gutter="20">
+        <el-col
+          :xs="{span:24,offset:0}" :sm="{span:12,offset:0}" :md="{span:6,offset:0}"
+          v-for="book in books">
+          <router-link :to="{path:'bookDetail',query:{bookId:book.id}}">
+            <el-button class="text item book">
+              {{book.title}}
+            </el-button>
+          </router-link>
+        </el-col>
+      </el-row>
+    </el-main>
   </el-container>
 </template>
 
@@ -23,6 +31,7 @@
     name: 'Books',
     data () {
       return {
+        input: '',
         books: []
       }
     },
@@ -41,4 +50,44 @@
 
 
 <style scoped>
+  .el-row {
+    margin-bottom: 20px;
+
+  &
+  :last-child {
+    margin-bottom: 0;
+  }
+
+  }
+  .el-col {
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+
+  .bg-purple-dark {
+    background: #99a9bf;
+  }
+
+  .bg-purple {
+    background: #d3dce6;
+  }
+
+  .bg-purple-light {
+    background: #e5e9f2;
+  }
+
+  .grid-content {
+    border-radius: 4px;
+    min-height: 36px;
+  }
+
+  .row-bg {
+    padding: 10px 0;
+    background-color: #f9fafc;
+  }
+
+  .book {
+    width: 100%;
+    height: 100px;
+  }
 </style>
