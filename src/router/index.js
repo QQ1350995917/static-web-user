@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
-import Books from '@/views/article/Books'
+import ArticleIndex from '@/views/article/Index'
 import BookDetail from '@/views/article/BookDetail'
 import ArticleDetail from '@/views/article/ArticleDetail'
 import SignIn from '@/views/session/SignIn'
@@ -49,17 +49,17 @@ export default new Router({
       component: HelloWorld
     },
     {
-      path: '/books',
-      name: 'Books',
-      component: Books
+      path: '/article/index',
+      name: 'ArticleIndex',
+      component: ArticleIndex
     },
     {
-      path: '/bookDetail',
+      path: '/article/bookDetail',
       name: 'BookDetail',
       component: BookDetail
     },
     {
-      path: '/articleDetail',
+      path: '/article/articleDetail',
       name: 'ArticleDetail',
       component: ArticleDetail
     },

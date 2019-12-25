@@ -1,22 +1,23 @@
 <template>
   <el-container>
-    <el-card class="box-card" style="width: 100%;overflow: scroll">
-      <div slot="header" class="clearfix">
-        <span style="font-size: 4rem">{{article.title}}</span>
-      </div>
-      <div v-for="paragraph in article.paragraphs" class="text item">
-        <p style="width: 98%;margin-bottom: 10px;font-size: 4rem">
-          {{paragraph}}
-        </p>
-      </div>
-      <
-    </el-card>
+    <el-main>
+      <span>{{article.title}}</span>
+      <el-divider></el-divider>
+      <el-col v-for="paragraph in article.paragraphs" class="text item">
+        <span>{{paragraph}}</span>
+      </el-col>
+    </el-main>
   </el-container>
 </template>
 
 <script>
   import { articleDetailInBook } from '@/apis/Article'
+  import ElCol from 'element-ui/packages/col/src/col'
+  import ElDivider from '../../../node_modules/element-ui/packages/divider/src/main'
   export default {
+    components: {
+      ElDivider,
+      ElCol},
     name: 'ArticleDetail',
     data () {
       return {

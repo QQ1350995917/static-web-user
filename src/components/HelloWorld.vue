@@ -95,7 +95,7 @@
     <h2>application</h2>
     <ul>
       <li>
-        <router-link tag='a' :to="'/books'" target="_blank">Article</router-link>
+        <router-link tag='a' :to="'/article/index'" target="_blank">Article</router-link>
       </li>
     </ul>
   </div>

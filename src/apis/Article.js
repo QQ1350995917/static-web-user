@@ -8,6 +8,7 @@ export function books(){
 }
 
 export function bookDetail(bookId){
+  console.log(bookId)
   return request({
     url: '/article/api/user/book/' + bookId,
     method: 'get'

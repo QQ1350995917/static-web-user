@@ -1,17 +1,28 @@
 <template>
   <el-container>
-    <el-card class="box-card" style="width: 100%;overflow: scroll">
-      <div slot="header" class="clearfix">
-        <span></span>
-      </div>
-      <div v-for="article in articles" class="text item" style="text-align: center">
-        <router-link :to="{path:'articleDetail',query:{bookId:article.bookId,articleId:article.id}}">
-          <el-button style="width: 98%;margin-bottom: 10px;font-size: 2rem">
-            {{article.title}}
-          </el-button>
-        </router-link>
-      </div>
-    </el-card>
+    <el-main>
+      <el-image
+        style="width: 100px; height: 100px"
+        :src="url">
+      </el-image>
+      <span>图书名称</span>
+      <el-rate
+        v-model="value2"
+        :colors="colors">
+      </el-rate>
+      <el-divider></el-divider>
+      <el-row :gutter="20">
+        <el-col
+          v-for="article in articles" v-bind:key="article.id">
+          <router-link target="_blank" :to="{path:'articleDetail',query:{bookId:article.bookId,articleId:article.id}}">
+            <div>
+              <span>{{article.title}}</span>
+              <el-divider></el-divider>
+            </div>
+          </router-link>
+        </el-col>
+      </el-row>
+    </el-main>
   </el-container>
 </template>
 
@@ -21,6 +32,9 @@
     name: 'BookDetail',
     data () {
       return {
+        url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+        value2: null,
+        colors: ['#99A9BF', '#F7BA2A', '#FF9900'],
         articles: []
       }
     },
