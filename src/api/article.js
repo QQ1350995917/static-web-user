@@ -39,3 +39,27 @@ export function updateArticle(data) {
     data
   })
 }
+
+
+export function fetchBooks(){
+  console.log("api/article/fetchBooks")
+  return request({
+    url: '/ARTICLE/api/user/book',
+    method: 'get'
+  })
+}
+
+export function fetchBook(bookId){
+  return request({
+    url: '/ARTICLE/api/user/book/' + bookId,
+    method: 'get'
+  })
+}
+
+export function fetchArticleInBook(bookId,articleId){
+  return request({
+    url: '/ARTICLE/api/user/book/' + bookId + "/" + articleId,
+    method: 'get'
+  })
+}
+

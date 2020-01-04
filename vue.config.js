@@ -55,12 +55,20 @@ module.exports = {
       //     console.log("原路径2：" + req.originalUrl, "代理路径2：" + req.path)
       //   }
       // },
-      '/account': {
-        target: `http://localhost:11221`,
+      // '/account': {
+      //   target: `http://localhost:11221`,
+      //   changeOrigin: true,
+      //   pathRewrite: {
+      //     '^/account': '/account'
+      //   },
+      //   onProxyReq: function (proxyReq, req, res) {
+      //     //实在不知道代理后的路径，可以在这里打印出出来看看
+      //     console.log("原路径：" + req.originalUrl, "代理路径：" + req.path)
+      //   }
+      // },
+      '/': {
+        target: 'http://localhost:11221',
         changeOrigin: true,
-        pathRewrite: {
-          '^/account': '/account'
-        },
         onProxyReq: function (proxyReq, req, res) {
           //实在不知道代理后的路径，可以在这里打印出出来看看
           console.log("原路径：" + req.originalUrl, "代理路径：" + req.path)

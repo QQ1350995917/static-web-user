@@ -184,6 +184,35 @@ export const constantRoutes = [
         meta: { title: 'guide', icon: 'guide', noCache: true }
       }
     ]
+  },
+
+  {
+    path: '/article/books',
+    component: () => import('@/views/article/books'),
+    hidden: true,
+    name: 'Books',
+    meta: {
+      title: 'Books',
+      icon: 'example'
+    }
+  },
+  {
+    path: '/article/book',
+    component: () => import('@/views/article/book'),
+    name: 'Book',
+    meta: {
+      title: 'Book',
+      icon: 'example'
+    }
+  },
+  {
+    path: '/article/article',
+    component: () => import('@/views/article/article'),
+    name: 'Article',
+    meta: {
+      title: 'Article',
+      icon: 'example'
+    }
   }
 ]
 

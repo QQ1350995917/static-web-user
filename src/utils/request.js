@@ -42,8 +42,9 @@ service.interceptors.response.use(
   response => {
     // const res = response.data
     const res = response
-    console.log("request.js => response : " + JSON.stringify(response))
+    console.log("request.js => response code: " + res.status)
     if (res.status === 200) {
+      console.log("request.js => response data : " + JSON.stringify(res.data))
       return res.data
     }
     if (res.code !== 20000) {
