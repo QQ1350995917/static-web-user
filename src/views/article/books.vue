@@ -41,7 +41,6 @@
     },
     mounted: function () {
       fetchBooks().then((res) => {
-          console.log("books ")
         if (res.meta.code === 200) {
           this.books = res.data.elements;
         } else {
