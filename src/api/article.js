@@ -42,23 +42,36 @@ export function updateArticle(data) {
 
 
 export function fetchBooks(){
-  console.log("api/article/fetchBooks")
   return request({
     url: '/ARTICLE/api/user/book',
     method: 'get'
   })
 }
 
-export function fetchBook(bookId){
+export function fetchBookSummary(bookId){
   return request({
     url: '/ARTICLE/api/user/book/' + bookId,
     method: 'get'
   })
 }
 
+export function fetchTableInBook(bookId){
+  return request({
+    url: '/ARTICLE/api/user/book/' + bookId + '/tables/0/0',
+    method: 'get'
+  })
+}
+
+export function fetchAroundTableInBook(bookId,tableId){
+  return request({
+    url: '/ARTICLE/api/user/book/' + bookId + '/tables/around/' + tableId,
+    method: 'get'
+  })
+}
+
 export function fetchArticleInBook(bookId,articleId){
   return request({
-    url: '/ARTICLE/api/user/book/' + bookId + "/" + articleId,
+    url: '/ARTICLE/api/user/book/' + bookId + '/' + articleId,
     method: 'get'
   })
 }

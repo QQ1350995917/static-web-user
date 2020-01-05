@@ -1,20 +1,55 @@
 <template>
   <el-container>
     <el-main>
-      <span>{{article.title}}</span>
+      <el-row>
+        <h1 style="text-align: center">{{article.title}}</h1>
+      </el-row>
       <el-divider></el-divider>
-      <el-col v-for="paragraph in article.paragraphs" v-bind:key="paragraph.id" class="text item">
+      <el-row style="text-align: center">
+        <el-link type="primary">作者</el-link>
+      </el-row>
+      <br>
+      <el-divider></el-divider>
+      <el-row>
+        <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8" style="text-align: center">
+          <el-link type="primary">上一章</el-link>
+        </el-col>
+        <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8" style="text-align: center">
+          <el-link type="primary">返回目录</el-link>
+        </el-col>
+        <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8" style="text-align: center">
+          <el-link type="primary">下一章</el-link>
+        </el-col>
+      </el-row>
+      <el-divider></el-divider>
+      <el-col
+        v-for="paragraph in article.paragraphs" v-bind:key="paragraph.id" class="text item">
         <span>{{paragraph}}</span>
+        <br>
       </el-col>
+      <el-divider></el-divider>
+      <el-row>
+        <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8" style="text-align: center">
+          <el-link type="primary">上一章</el-link>
+        </el-col>
+        <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8" style="text-align: center">
+          <el-link type="primary">返回目录</el-link>
+        </el-col>
+        <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8" style="text-align: center">
+          <el-link type="primary">下一章</el-link>
+        </el-col>
+      </el-row>
     </el-main>
   </el-container>
 </template>
 
 <script>
-  import { fetchArticleInBook } from '@/api/article'
+  import { fetchAroundTableInBook,fetchArticleInBook } from '@/api/article'
   import ElCol from 'element-ui/packages/col/src/col'
+  import ElRow from "element-ui/packages/row/src/row";
   export default {
     components: {
+      ElRow,
       ElCol},
     name: 'ArticleDetail',
     data () {
@@ -23,6 +58,13 @@
       }
     },
     mounted: function () {
+      fetchAroundTableInBook(this.$route.query.bookId,this.$route.query.articleId).then((res) => {
+        if (res.meta.code === 200) {
+
+        } else {
+          this.$message.error('参数错误')
+        }
+      }),
       fetchArticleInBook(this.$route.query.bookId,this.$route.query.articleId).then((res) => {
         if (res.meta.code === 200) {
           this.article = res.data;
