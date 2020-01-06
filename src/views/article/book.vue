@@ -12,8 +12,7 @@
       <el-row>
         <img
           style="width: 100px; height: 100px"
-          :src="url"
-          :fit="fit"/>
+          :src="url"/>
       </el-row>
       <el-divider></el-divider>
       <el-row>
@@ -37,6 +36,7 @@
 
 <script>
   import { fetchBookSummary,fetchTableInBook } from '@/api/article'
+  import ElButton from '../../../node_modules/element-ui/packages/button/src/button'
   export default {
     name: 'BookDetail',
     data () {
