@@ -1,6 +1,6 @@
 <template>
   <div class="login-container">
-    <el-form :model="signInForm" :rules="rules" status-icon ref="ruleForm" label-position="left" label-width="0px"
+    <el-form :model="signInForm" :rules="rules" status-icon ref="signInForm" label-position="left" label-width="0px"
              class="demo-ruleForm login-page">
       <h3 class="title">系统登录</h3>
 
@@ -34,7 +34,7 @@
       }
     },
     methods: {
-      handleSubmit(event){
+      handleSubmit(){
         this.$refs.signInForm.validate((valid) => {
           if (valid) {
             signin(this.signInForm.identify, this.signInForm.password)

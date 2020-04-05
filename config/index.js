@@ -11,7 +11,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/': {
-        target: 'http://192.168.31.206:11221',
+        target: 'http://localhost:11221',
         changeOrigin: true,
         onProxyReq: function (proxyReq, req, res) {
           //实在不知道代理后的路径，可以在这里打印出出来看看
@@ -19,7 +19,7 @@ module.exports = {
         }
       },
       '/account': {
-        target: 'http://192.168.31.206:11221',
+        target: 'http://localhost:11221',
         changeOrigin: true,
         pathRewrite: {
           '^/account': '/account'
@@ -30,7 +30,7 @@ module.exports = {
         }
       },
       '/article': {
-        target: 'http://192.168.31.206:11221',
+        target: 'http://localhost:11221',
         changeOrigin: true,
         pathRewrite: {
           '^/article': '/article'

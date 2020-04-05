@@ -8,10 +8,10 @@ import router from './router'
 import '@/styles/index.scss'
 import 'font-awesome/scss/font-awesome.scss'
 import { clearRequest } from '@/utils/request'
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Button } from 'element-react';
-import 'element-theme-default';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Button } from 'element-react'
+import 'element-theme-default'
 
 Vue.use(ElementUI)
 Vue.config.productionTip = false

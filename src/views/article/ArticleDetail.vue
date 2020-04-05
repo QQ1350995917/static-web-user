@@ -3,7 +3,7 @@
     <el-main>
       <span>{{article.title}}</span>
       <el-divider></el-divider>
-      <el-col v-for="paragraph in article.paragraphs" class="text item">
+      <el-col v-for="paragraph in article.paragraphs" v-bind:key="paragraph.id" class="text item">
         <span>{{paragraph}}</span>
       </el-col>
     </el-main>
