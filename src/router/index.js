@@ -9,6 +9,9 @@ import SignUp from '@/views/session/SignUp'
 import LayoutMine from '@/container/Mine'
 import Dashboard from '@/views/dashboard/Index'
 import Organization from '@/views/organization/Index'
+import Typeface from '@/views/typeface/Index'
+import TypefaceFont from '@/views/typeface/Font'
+import TypefacePainting from '@/views/typeface/Painting'
 import OrganizationOfJoined from '@/views/organization/Joined'
 import OrganizationOfCreated from '@/views/organization/Created'
 import OrganizationOfApply from '@/views/organization/Apply'
@@ -39,6 +42,13 @@ export default new Router({
             {path: 'created', name: 'Created', component: OrganizationOfCreated},
             {path: 'apply', name: 'Apply', component: OrganizationOfApply},
             {path: 'review', name: 'Review', component: OrganizationReview},
+          ]
+        },
+        {
+          path: 'typeface', name: 'Typeface', component: Typeface,
+          children: [
+            {path: 'font', name: 'TypefaceFont', component: TypefaceFont},
+            {path: 'painting', name: 'TypefacePainting', component: TypefacePainting}
           ]
         }
       ]
