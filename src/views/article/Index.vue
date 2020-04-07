@@ -31,7 +31,7 @@
 </template>
 
 <script>
-  import { books } from '@/apis/Article'
+  import { books } from '@/apis/article/Article'
   import ElButton from '../../../node_modules/element-ui/packages/button/src/button'
   export default {
     components: {ElButton},

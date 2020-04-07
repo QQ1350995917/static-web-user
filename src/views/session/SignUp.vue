@@ -19,7 +19,7 @@
   </div>
 </template>
 <script>
-  import { signup } from '@/apis/SignUp'
+  import { signup } from '@/apis/session/SignUp'
   export default {
     data(){
       return {

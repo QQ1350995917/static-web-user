@@ -27,7 +27,7 @@
 </template>
 
 <script>
-  import { bookDetail } from '@/apis/Article'
+  import { bookDetail } from '@/apis/article/Article'
   export default {
     name: 'BookDetail',
     data () {

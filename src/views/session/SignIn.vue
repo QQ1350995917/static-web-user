@@ -18,7 +18,7 @@
   </div>
 </template>
 <script>
-  import { signin } from '@/apis/SignIn'
+  import { signin } from '@/apis/session/SignIn'
   export default {
     data(){
       return {
@@ -40,8 +40,8 @@
             signin(this.signInForm.identify, this.signInForm.password)
               .then((res) => {
                 if (res.meta.code === 200) {
-                  sessionStorage.setItem('token', res.data.token);
-                  sessionStorage.setItem('uid', res.data.uid);
+                  sessionStorage.setItem('token', JSON.stringify(res.data.token));
+                  sessionStorage.setItem('uid', JSON.stringify(res.data.uid));
                   this.$router.push({path: '/'});
                 } else {
                   this.$message.error('参数错误')

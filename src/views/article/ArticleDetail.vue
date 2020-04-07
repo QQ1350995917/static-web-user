@@ -11,7 +11,7 @@
 </template>
 
 <script>
-  import { articleDetailInBook } from '@/apis/Article'
+  import { articleDetailInBook } from '@/apis/article/Article'
   import ElCol from 'element-ui/packages/col/src/col'
   import ElDivider from '../../../node_modules/element-ui/packages/divider/src/main'
   export default {
