@@ -37,15 +37,30 @@ service.interceptors.response.use(
     if (resp.status === 200) {
       return resp.data
     } else {
+      console.log('网络正常，业务出错，日志如下')
       console.table(resp)
-      this.$message.error('HTTP CODE = ' + resp.status)
     }
-  },
-  error => {
-    console.error('request.js = > interceptors > response > error = ' + error)
-    return Promise.reject(error)
+  }, error => {
+    if (error.response.status === 400) {
+      console.warn("400" );
+    } else if (error.response.status === 401) {
+      console.warn("401" );
+      // location.href = '/#/signin'
+    } else if (error.response.status === 402) {
+      console.warn("response 402" );
+    }  else if (error.response.status === 403) {
+      console.warn("response 403");
+    } else if (error.response.status === 404) {
+      console.warn("response 404" );
+      // router.push({
+      //   name: 'error-404'
+      // });
+    }
+    console.table(error.response.data)
+    return Promise.reject(error.response.data)
   }
 )
 
 export { clearRequest }
+
 export default service
