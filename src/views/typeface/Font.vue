@@ -15,7 +15,7 @@
             <div slot="header" class="clearfix" style="text-align: center;">
               <span>{{item.title}}</span>
             </div>
-            <el-image src="http://www.diyiziti.com/Res/Images/Thumb/康熙字典體/default.PNG"></el-image>
+            <el-image :src="item.thumbUrl"></el-image>
           </el-card>
         </el-col>
       </div>
