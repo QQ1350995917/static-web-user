@@ -45,7 +45,7 @@ service.interceptors.response.use(
       console.warn("400" );
     } else if (error.response.status === 401) {
       console.warn("401" );
-      // location.href = '/#/signin'
+      location.href = '/#/signin'
     } else if (error.response.status === 402) {
       console.warn("response 402" );
     }  else if (error.response.status === 403) {
@@ -56,6 +56,7 @@ service.interceptors.response.use(
       //   name: 'error-404'
       // });
     }
+    console.log("响应拦截器，错误信息：")
     console.table(error.response.data)
     return Promise.reject(error.response.data)
   }

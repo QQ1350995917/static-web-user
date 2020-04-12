@@ -4,8 +4,8 @@
              class="demo-ruleForm login-page">
       <h3 class="title">系统登录</h3>
 
-      <el-form-item prop="identify">
-        <el-input type="text" v-model="signInForm.identify" auto-complete="off" placeholder="用户名"></el-input>
+      <el-form-item prop="loginName">
+        <el-input type="text" v-model="signInForm.loginName" auto-complete="off" placeholder="用户名"></el-input>
       </el-form-item>
       <el-form-item prop="password">
         <el-input type="password" v-model="signInForm.password" auto-complete="off" placeholder="密码"></el-input>
@@ -23,11 +23,11 @@
     data(){
       return {
         signInForm: {
-          identify: '18511694468',
+          loginName: '吕布',
           password: '123456',
         },
         rules: {
-          identify: [{required: true, message: 'please enter your account', trigger: 'blur'}],
+          loginName: [{required: true, message: 'please enter your account', trigger: 'blur'}],
           password: [{required: true, message: 'enter your password', trigger: 'blur'}]
         },
         checked: false
@@ -37,11 +37,11 @@
       handleSubmit(){
         this.$refs.signInForm.validate((valid) => {
           if (valid) {
-            signin(this.signInForm.identify, this.signInForm.password)
+            signin(this.signInForm.loginName, this.signInForm.password)
               .then((res) => {
                 if (res.meta.code === 200) {
-                  sessionStorage.setItem('token', JSON.stringify(res.data.token));
-                  sessionStorage.setItem('uid', JSON.stringify(res.data.uid));
+                  sessionStorage.setItem('token', res.data.token);
+                  sessionStorage.setItem('uid', res.data.uid);
                   this.$router.push({path: '/'});
                 } else {
                   this.$message.error('参数错误')

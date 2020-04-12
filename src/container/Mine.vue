@@ -39,6 +39,7 @@
 
 <script>
   import Sidebar from '@/components/Sidebar'
+  import { logout } from '@/apis/session/SignIn'
   export default {
     name: 'Layout',
     components: {
@@ -59,8 +60,15 @@
       logout: function () {
         this.$confirm('确认退出?', '提示', {})
           .then(() => {
-            this.sessionStorage.removeItem('user');
-            this.$router.push('/signin');
+            logout(sessionStorage.getItem("uid")).then((res) => {
+              if (res.meta.code === 200) {
+                sessionStorage.removeItem('token');
+                sessionStorage.removeItem('uid');
+                this.$router.push('/signin');
+              } else {
+                this.$message.error('参数错误')
+              }
+            })
           })
           .catch((e) => { console.log('exception' + e) });
       },
@@ -87,7 +95,6 @@
         this.changeFixed(this.clientHeight)
       }
     },
-
   }
 </script>
 

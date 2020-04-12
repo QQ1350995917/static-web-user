@@ -11,11 +11,13 @@
         <el-col :span="6" v-for="(item, index) in fonts" :key="item.id" v-infinite-scroll="loadMore"
                 infinite-scroll-disabled="disabled">
           <el-card :body-style="{ padding: '0px' }" style="margin: 5px;cursor: pointer;" shadow="hover"
-                   @click.native="handleOpen(item)" >
+                   @click.native="handleOpen(item)">
             <div slot="header" class="clearfix" style="text-align: center;">
               <span>{{item.title}}</span>
             </div>
-            <el-image :src="item.thumbUrl"></el-image>
+            <div style="text-align: center;">
+              <el-image :src="item.thumbUrl"></el-image>
+            </div>
           </el-card>
         </el-col>
       </div>
@@ -119,9 +121,9 @@
       draw(){
         paint(this.chosenFont.id, this.paintingContent).then((res) => {
           if (res.meta.code === 200) {
-            this.$message({"message":"成功","type": "success"})
+            this.$message({"message": "成功", "type": "success"})
           } else {
-            this.$message({"message":"参数错误","type": "error"})
+            this.$message({"message": "参数错误", "type": "error"})
           }
         })
       }

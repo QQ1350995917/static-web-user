@@ -3,27 +3,27 @@
  */
 import request from '@/utils/request'
 
-export function signin(identify,password){
+export function signin(loginName,password){
   return request({
     url: '/account/api/session',
     method: 'put',
     data: {
-      identify,
+      loginName,
       password
     }
   })
 }
 
-export function getSessionInfo(){
+export function getSessionInfo(id){
   return request({
-    url: '/account/api/session',
+    url: '/account/api/session/' + id,
     method: 'get'
   })
 }
 
-export function logout(){
+export function logout(id){
   return request({
-    url: '/account/api/session',
+    url: '/account/api/session/' + id,
     method: 'delete'
   })
 }
