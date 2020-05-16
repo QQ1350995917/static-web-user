@@ -29,11 +29,11 @@ module.exports = {
           console.log("account原路径：" + req.originalUrl, "代理路径：" + req.path)
         }
       },
-      '/article': {
+      '/book': {
         target: 'http://localhost:11221',
         changeOrigin: true,
         pathRewrite: {
-          '^/article': '/article'
+          '^/book': '/book'
         },
         onProxyReq: function (proxyReq, req, res) {
           //实在不知道代理后的路径，可以在这里打印出出来看看

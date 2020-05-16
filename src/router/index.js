@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
-import ArticleIndex from '@/views/article/Index'
-import BookDetail from '@/views/article/BookDetail'
-import ArticleDetail from '@/views/article/ArticleDetail'
+import ArticleIndex from '@/views/book/Index'
+import BookDetail from '@/views/book/BookDetail'
+import ArticleDetail from '@/views/book/ArticleDetail'
 import SignIn from '@/views/session/SignIn'
 import SignUp from '@/views/session/SignUp'
 import LayoutMine from '@/container/Mine'
@@ -59,17 +59,17 @@ export default new Router({
       component: HelloWorld
     },
     {
-      path: '/article/index',
+      path: '/book/index',
       name: 'ArticleIndex',
       component: ArticleIndex
     },
     {
-      path: '/article/bookDetail',
+      path: '/book/bookDetail',
       name: 'BookDetail',
       component: BookDetail
     },
     {
-      path: '/article/articleDetail',
+      path: '/book/articleDetail',
       name: 'ArticleDetail',
       component: ArticleDetail
     },
