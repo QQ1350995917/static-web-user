@@ -5,24 +5,24 @@
         <el-input
           @keyup.enter.native="onSearch()"
           placeholder="Please input"
-          v-model="input"
-          class="input-with-select">
+          v-model="input" class="input-with-select">
           <el-button slot="append" icon="el-icon-search"></el-button>
         </el-input>
       </div>
     </el-header>
     <el-main>
-      <el-carousel indicator-position="outside">
-        <el-carousel-item v-for="item in 4" :key="item">
-          <h3>{{ item }}</h3>
-        </el-carousel-item>
-      </el-carousel>
+      <el-tabs type="card" @tab-click="handleClick">
+        <el-tab-pane label="User">User</el-tab-pane>
+        <el-tab-pane label="Config">Config</el-tab-pane>
+        <el-tab-pane label="Role">Role</el-tab-pane>
+        <el-tab-pane label="Task">Task</el-tab-pane>
+      </el-tabs>
 
       <el-row :gutter="20">
         <el-col
           :xs="{span:24,offset:0}" :sm="{span:12,offset:0}" :md="{span:6,offset:0}"
           v-for="book in books" v-bind:key="book.id">
-          <router-link target="_blank" :to="{path:'bookDetail',query:{bookId:book.id}}">
+          <router-link target="_blank" :to="{path:'/book/articleDetail',query:{bookId:book.id,articleId:book.id}}">
             <el-button class="text item book">
               {{book.title}}
             </el-button>
@@ -35,24 +35,23 @@
 </template>
 
 <script>
-  import { books } from '@/apis/book/Book'
+  import { search } from '@/apis/book/Book'
   import ElButton from '../../../node_modules/element-ui/packages/button/src/button'
   export default {
     components: {ElButton},
-    name: 'Book',
+    name: 'BookSearch',
     data () {
       return {
-        input: '',
-        books: []
+        input: this.$route.query.keyword,
+        activeName: 'first',
+        books: [],
+        index: 0,
+        size: 12
       }
     },
     mounted: function () {
-      books().then((res) => {
-        if (res.meta.code === 200) {
-          this.books = res.data.elements;
-        } else {
-          this.$message.error('参数错误')
-        }
+      this.$nextTick(() => {
+        this.doSearch(this.input, this.index, this.size)
       })
     },
     methods: {
@@ -60,8 +59,20 @@
         var e = window.event || e;
         var keyCode = e.keyCode || e.which || e.charCode;
         if (keyCode == 13 && this.input) {
-          this.$router.push({path: '/book/index/search?keyword=' + this.input});
+          this.doSearch(this.input, this.index, this.size)
         }
+      },
+      doSearch: function (keyword, index, size) {
+        search(keyword,index,size).then((res) => {
+          if (res.meta.code === 200) {
+            this.books = res.data.elements;
+          } else {
+            this.$message.error('参数错误')
+          }
+        })
+      },
+      handleClick:function () {
+
       }
     }
   }

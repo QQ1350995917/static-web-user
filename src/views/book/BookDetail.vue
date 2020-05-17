@@ -26,7 +26,7 @@
 </template>
 
 <script>
-  import { bookDetail, bookTable } from '@/apis/book/Book'
+  import { bookSummary, bookTable } from '@/apis/book/Book'
   export default {
     name: 'BookDetail',
     data () {
@@ -39,7 +39,7 @@
       }
     },
     mounted: function () {
-      bookDetail(this.$route.query.bookId).then((res) => {
+      bookSummary(this.$route.query.bookId).then((res) => {
         if (res.meta.code === 200) {
           this.book = res.data;
         } else {

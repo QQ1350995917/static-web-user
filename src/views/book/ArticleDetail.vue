@@ -5,6 +5,7 @@
       <el-divider></el-divider>
       <el-col v-for="paragraph in article.paragraphs" v-bind:key="paragraph.id" class="text item">
         <span>{{paragraph}}</span>
+        <p><span> </span></p>
       </el-col>
     </el-main>
   </el-container>
@@ -33,7 +34,7 @@
         }
       })
     },
-    method: {
+    methods: {
 
     }
   }

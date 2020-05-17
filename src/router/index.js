@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import ArticleIndex from '@/views/book/Index'
+import BookIndexSearch from '@/views/book/IndexSearch'
 import BookDetail from '@/views/book/BookDetail'
 import ArticleDetail from '@/views/book/ArticleDetail'
 import SignIn from '@/views/session/SignIn'
@@ -62,6 +63,10 @@ export default new Router({
       path: '/book/index',
       name: 'ArticleIndex',
       component: ArticleIndex
+    },{
+      path: '/book/index/search',
+      name: 'BookIndexSearch',
+      component: BookIndexSearch
     },
     {
       path: '/book/bookDetail',
