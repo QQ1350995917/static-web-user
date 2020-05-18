@@ -17,15 +17,16 @@
         <el-tab-pane label="Role">Role</el-tab-pane>
         <el-tab-pane label="Task">Task</el-tab-pane>
       </el-tabs>
-
       <el-row :gutter="20">
+
+
         <el-col
-          :xs="{span:24,offset:0}" :sm="{span:12,offset:0}" :md="{span:6,offset:0}"
+          :xs="{span:24,offset:0}" :sm="{span:24,offset:0}" :md="{span:24,offset:0}"
           v-for="book in books" v-bind:key="book.id">
           <router-link target="_blank" :to="{path:'/book/articleDetail',query:{bookId:book.id,articleId:book.id}}">
-            <el-button class="text item book">
+            <p class="text item book">
               {{book.title}}
-            </el-button>
+            </p>
           </router-link>
         </el-col>
       </el-row>
