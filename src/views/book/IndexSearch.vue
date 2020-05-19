@@ -18,18 +18,24 @@
         <el-tab-pane label="Task">Task</el-tab-pane>
       </el-tabs>
       <el-row :gutter="20">
-
-
         <el-col
           :xs="{span:24,offset:0}" :sm="{span:24,offset:0}" :md="{span:24,offset:0}"
           v-for="book in books" v-bind:key="book.id">
-          <router-link target="_blank" :to="{path:'/book/articleDetail',query:{bookId:book.id,articleId:book.id}}">
-            <p class="text item book">
-              {{book.title}}
-            </p>
-          </router-link>
+          <a :href="book.esLinkTo" target="_blank">{{book.esTitle}}</a> - <span>{{book.esType}}</span>
+          <!--<router-link target="_blank" :to="{path:'/book/articleDetail',query:{bookId:book.id,articleId:book.id}}">-->
+          <!--<p class="text item book" v-html="book.esTitle"></p>-->
+          <!--</router-link>-->
+          <p v-html="book.esSummary"></p>
+          <span :formatter="dateFormat(book.esUpdateTime)">{{book.esUpdateTime}}</span>
         </el-col>
       </el-row>
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        :page-size="size"
+        :total="total"
+        @current-change="handleCurrentChange">
+      </el-pagination>
     </el-main>
     <el-divider></el-divider>
   </el-container>
@@ -37,6 +43,7 @@
 
 <script>
   import { search } from '@/apis/book/Book'
+  import moment from 'moment'
   import ElButton from '../../../node_modules/element-ui/packages/button/src/button'
   export default {
     components: {ElButton},
@@ -46,8 +53,9 @@
         input: this.$route.query.keyword,
         activeName: 'first',
         books: [],
-        index: 0,
-        size: 12
+        index: 1,
+        size: 12,
+        total: 0
       }
     },
     mounted: function () {
@@ -57,24 +65,39 @@
     },
     methods: {
       onSearch: function (e) {
+        this.index = 1
+        this.total = 0
+        this.books = []
         var e = window.event || e;
         var keyCode = e.keyCode || e.which || e.charCode;
         if (keyCode == 13 && this.input) {
-          this.doSearch(this.input, this.index, this.size)
+          this.doSearch(this.input, this.index - 1, this.size)
         }
       },
       doSearch: function (keyword, index, size) {
-        search(keyword,index,size).then((res) => {
+        search(keyword, index, size).then((res) => {
           if (res.meta.code === 200) {
             this.books = res.data.elements;
+            this.index = res.data.index + 1;
+            this.total = res.data.total;
           } else {
             this.$message.error('参数错误')
           }
         })
       },
-      handleClick:function () {
+      handleClick: function () {
 
-      }
+      },
+      dateFormat(date) {
+        if (date == undefined) {
+          return "";
+        }
+        return moment(date).format("YYYY-MM-DD HH:mm:ss");
+      },
+      handleCurrentChange: function(currentPage){
+        this.index = currentPage;
+        this.doSearch(this.input, this.index - 1, this.size)
+      },
     }
   }
 </script>

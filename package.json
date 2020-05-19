@@ -19,6 +19,7 @@
     "element-theme-default": "^1.4.13",
     "element-ui": "^2.12.0",
     "font-awesome": "^4.7.0",
+    "moment": "^2.25.3",
     "postcss-px-to-viewport": "^1.1.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
