@@ -1,8 +1,8 @@
 import request from '@/utils/request'
 
-export function books () {
+export function books (index, size) {
   return request({
-    url: '/book/api/user/book',
+    url: '/book/api/user/book?index=' + index + '&size=' + size,
     method: 'get'
   })
 }
@@ -14,24 +14,12 @@ export function bookSummary (bookId) {
   })
 }
 
-export function bookTable (bookId) {
+export function bookTable (bookId, pageIndex, pageSize) {
   console.log(bookId)
   return request({
-    url: '/book/api/user/book/' + bookId + '/table',
+    url: '/book/api/user/book/' + bookId + '/' + pageIndex + '/' + pageSize,
     method: 'get'
   })
 }
 
-export function articleDetailInBook (bookId, articleId) {
-  return request({
-    url: '/book/api/user/book/article/' + articleId,
-    method: 'get'
-  })
-}
 
-export function search (keyword, index, size) {
-  return request({
-    url: '/book/api/user/book/search?keyword=' + keyword + '&index=' + index + '&size=' + size,
-    method: 'get'
-  })
-}

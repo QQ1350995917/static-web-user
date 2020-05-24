@@ -42,7 +42,7 @@
 </template>
 
 <script>
-  import { search } from '@/apis/book/Book'
+  import { search } from '@/apis/book/Search'
   import moment from 'moment'
   import ElButton from '../../../node_modules/element-ui/packages/button/src/button'
   export default {

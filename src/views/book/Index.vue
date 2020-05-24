@@ -29,6 +29,13 @@
           </router-link>
         </el-col>
       </el-row>
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        :page-size="size"
+        :total="total"
+        @current-change="handleCurrentChange">
+      </el-pagination>
     </el-main>
     <el-divider></el-divider>
   </el-container>
@@ -43,17 +50,15 @@
     data () {
       return {
         input: '',
+        index: 1,
+        size: 12,
+        total: 0,
         books: []
       }
     },
     mounted: function () {
-      books().then((res) => {
-        if (res.meta.code === 200) {
-          this.books = res.data.elements;
-        } else {
-          this.$message.error('参数错误')
-        }
-      })
+      this.requestBooks(this.index, this.size);
+
     },
     methods: {
       onSearch: function (e) {
@@ -62,6 +67,23 @@
         if (keyCode == 13 && this.input) {
           this.$router.push({path: '/book/index/search?keyword=' + this.input});
         }
+      },
+      requestBooks: function (index, size) {
+        books(index - 1, size).then((res) => {
+          this.books = []
+          if (res.meta.code === 200) {
+            this.books = res.data.elements;
+            this.index = res.data.index + 1;
+            this.size = res.data.size;
+            this.total = res.data.total;
+          } else {
+            this.$message.error('参数错误')
+          }
+        })
+      },
+      handleCurrentChange: function (currentPage) {
+        this.index = currentPage;
+        this.requestBooks(this.index, this.size)
       }
     }
   }

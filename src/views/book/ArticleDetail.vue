@@ -12,7 +12,7 @@
 </template>
 
 <script>
-  import { articleDetailInBook } from '@/apis/book/Book'
+  import { articleDetail } from '@/apis/book/Article'
   import ElCol from 'element-ui/packages/col/src/col'
   import ElDivider from '../../../node_modules/element-ui/packages/divider/src/main'
   export default {
@@ -26,7 +26,7 @@
       }
     },
     mounted: function () {
-      articleDetailInBook(this.$route.query.bookId,this.$route.query.articleId).then((res) => {
+      articleDetail(this.$route.query.articleId).then((res) => {
         if (res.meta.code === 200) {
           this.article = res.data;
         } else {
