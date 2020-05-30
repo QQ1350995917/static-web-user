@@ -6,7 +6,7 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
-const name = pkg.name || 'vue-element-admin' // page title
+const name = pkg.name || 'static-web-user' // page title
 const port = 9527 // dev port
 
 // All configuration item explanations can be find in https://cli.vuejs.org/config/
@@ -78,10 +78,10 @@ module.exports = {
         extended: true
       }))
 
-      const { default: mocks } = require('./mock')
-      for (const mock of mocks) {
-        app[mock.type](mock.url, mock.response)
-      }
+      // const { default: mocks } = require('./mock')
+      // for (const mock of mocks) {
+      //   app[mock.type](mock.url, mock.response)
+      // }
     }
   },
   configureWebpack: {
