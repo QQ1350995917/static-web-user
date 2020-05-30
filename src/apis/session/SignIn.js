@@ -14,16 +14,16 @@ export function signin(loginName,password){
   })
 }
 
-export function getSessionInfo(id){
+export function getSessionInfo(){
   return request({
-    url: '/account/api/session/' + id,
+    url: '/account/api/session',
     method: 'get'
   })
 }
 
-export function logout(id){
+export function logout(){
   return request({
-    url: '/account/api/session/' + id,
+    url: '/account/api/session',
     method: 'delete'
   })
 }
