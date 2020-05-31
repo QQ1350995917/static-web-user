@@ -92,6 +92,11 @@ export const constantRoutes = [
   },
   {
     path: '/typeface',
+    component: () => import('@/views/typeface/index'),
+    hidden: true
+  },
+  {
+    path: '/typeface/font',
     component: () => import('@/views/typeface/font'),
     hidden: true
   },

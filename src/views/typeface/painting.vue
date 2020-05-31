@@ -13,8 +13,8 @@
         </el-header>
         <el-main class="infinite-list" v-infinite-scroll="loadMore" style="overflow:auto">
             <p v-for="(item, index) in paintings" class="infinite-list-item">
-                <el-image style="width: 100%; height: 100%" show-overflow-tooltip :src="item.imageUrl"
-                          :alt="item.content"></el-image>
+                <img style="width: 100%; height: 100%" show-overflow-tooltip :src="item.imageUrl"
+                          :alt="item.content"/>
             </p>
         </el-main>
         <el-backtop></el-backtop>
@@ -26,12 +26,12 @@
   import ElMain from '../../../node_modules/element-ui/packages/main/src/main'
   import { listMyPainting } from '@/api/typeface/painting'
   export default {
+    name: 'painting',
     components: {
       ElMain,
       ElContainer,
       ElHeader
     },
-    name: 'Typeface',
     data () {
       return {
         select: 1,
@@ -54,7 +54,7 @@
       loadMore () {
         listMyPainting(this.searchContent, this.searchFontId, this.nextPageIndex, this.pageSize).then((res) => {
           if (res.meta.code === 200) {
-            this.paintings = res.data.data
+            this.paintings = res.data.elements
           } else {
             this.$message.error('参数错误')
           }

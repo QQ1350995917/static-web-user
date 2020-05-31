@@ -16,7 +16,7 @@
                             <span>{{item.title}}</span>
                         </div>
                         <div style="text-align: center;">
-                            <el-image :src="item.thumbUrl"></el-image>
+                            <img :src="item.thumbUrl"/>
                         </div>
                     </el-card>
                 </el-col>
@@ -52,12 +52,12 @@
   import { listFont } from '@/api/typeface/font'
   import { paint } from '@/api/typeface/painting'
   export default {
+    name: 'font',
     components: {
       ElMain,
       ElContainer,
       ElHeader
     },
-    name: 'Typeface',
     data () {
       return {
         loading: false,
@@ -86,18 +86,19 @@
     methods: {
       loadMore () {
         this.loading = true;
-        setTimeout(() => {
-          listFont(this.title, this.nextPageIndex, this.pageSize).then((res) => {
-            if (res.meta.code === 200) {
-              this.nextPageIndex += 1;
-              this.totalPages = res.data.page;
-              this.fonts = this.fonts.concat(res.data.data);
-              this.loading = false;
-            } else {
-              this.$message.error('参数错误')
-            }
-          })
-        }, 1000)
+//        setTimeout(() => {
+//
+//        }, 1000)
+        listFont(this.title, this.nextPageIndex, this.pageSize).then((res) => {
+          if (res.meta.code === 200) {
+            this.nextPageIndex += 1;
+            this.totalPages = res.data.page;
+            this.fonts = this.fonts.concat(res.data.elements);
+            this.loading = false;
+          } else {
+            this.$message.error('参数错误')
+          }
+        })
       },
       searchFont(title) {
         this.fonts = [];
