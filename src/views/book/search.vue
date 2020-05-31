@@ -5,27 +5,28 @@
                 <el-input
                         @keyup.enter.native="onSearch()"
                         placeholder="Please input"
-                        v-model="input"
-                        class="input-with-select">
+                        v-model="input" class="input-with-select">
                     <el-button slot="append" icon="el-icon-search"></el-button>
                 </el-input>
             </div>
         </el-header>
         <el-main>
-            <el-carousel indicator-position="outside">
-                <el-carousel-item v-for="item in 4" :key="item">
-                    <h3>{{ item }}</h3>
-                </el-carousel-item>
-            </el-carousel>
+            <el-tabs type="card" @tab-click="handleClick">
+                <el-tab-pane label="User">User</el-tab-pane>
+                <el-tab-pane label="Config">Config</el-tab-pane>
+                <el-tab-pane label="Role">Role</el-tab-pane>
+                <el-tab-pane label="Task">Task</el-tab-pane>
+            </el-tabs>
             <el-row :gutter="20">
                 <el-col
-                        :xs="{span:24,offset:0}" :sm="{span:12,offset:0}" :md="{span:6,offset:0}"
+                        :xs="{span:24,offset:0}" :sm="{span:24,offset:0}" :md="{span:24,offset:0}"
                         v-for="book in books" v-bind:key="book.id">
-                    <router-link target="_blank" :to="{path:'/book/book/detail',query:{bookId:book.id}}">
-                        <el-button class="text item book">
-                            {{book.title}}
-                        </el-button>
-                    </router-link>
+                    <a :href="book.esLinkTo" target="_blank">{{book.esTitle}}</a> - <span>{{book.esType}}</span>
+                    <!--<router-link target="_blank" :to="{path:'/book/articleDetail',query:{bookId:book.id,articleId:book.id}}">-->
+                    <!--<p class="text item book" v-html="book.esTitle"></p>-->
+                    <!--</router-link>-->
+                    <p v-html="book.esSummary"></p>
+                    <span :formatter="dateFormat(book.esUpdateTime)">{{book.esUpdateTime}}</span>
                 </el-col>
             </el-row>
             <el-pagination
@@ -40,49 +41,65 @@
 </template>
 
 <script>
-  import { requestBooksApi } from '@/api/book/book'
+  import { search } from '@/api/book/search'
+  import moment from 'moment'
+//  import ElButton from '../../../node_modules/element-ui/packages/button/src/button'
   export default {
-    name: 'BookIndex',
+//    components: {ElButton},
+    name: 'BookSearch',
     data () {
       return {
-        input: '',
+        input: this.$route.query.keyword,
+        activeName: 'first',
+        books: [],
         index: 1,
         size: 12,
-        total: 0,
-        books: []
+        total: 0
       }
     },
     mounted: function () {
-      this.requestBooks(this.index, this.size);
+      this.$nextTick(() => {
+        this.doSearch(this.input, this.index, this.size)
+      })
     },
     methods: {
       onSearch: function (e) {
+        this.index = 1
+        this.total = 0
+        this.books = []
         var e = window.event || e;
         var keyCode = e.keyCode || e.which || e.charCode;
         if (keyCode == 13 && this.input) {
-          this.$router.push({path: '/book/search?keyword=' + this.input});
+          this.doSearch(this.input, this.index - 1, this.size)
         }
       },
-      requestBooks: function (index, size) {
-        requestBooksApi(index - 1, size).then((res) => {
-          this.books = []
+      doSearch: function (keyword, index, size) {
+        search(keyword, index, size).then((res) => {
           if (res.meta.code === 200) {
             this.books = res.data.elements;
             this.index = res.data.index + 1;
-            this.size = res.data.size;
             this.total = res.data.total;
           } else {
             this.$message.error('参数错误')
           }
         })
       },
-      handleCurrentChange: function (currentPage) {
+      handleClick: function () {
+      },
+      dateFormat(date) {
+        if (date == undefined) {
+          return "";
+        }
+        return moment(date).format("YYYY-MM-DD HH:mm:ss");
+      },
+      handleCurrentChange: function(currentPage){
         this.index = currentPage;
-        this.requestBooks(this.index, this.size)
-      }
+        this.doSearch(this.input, this.index - 1, this.size)
+      },
     }
   }
 </script>
+
 
 <style scoped>
     .el-carousel__item h3 {
@@ -92,51 +109,40 @@
         line-height: 300px;
         margin: 0;
     }
-
     .el-carousel__item:nth-child(2n) {
         background-color: #99a9bf;
     }
-
     .el-carousel__item:nth-child(2n+1) {
         background-color: #d3dce6;
     }
-
     .el-row {
         margin-bottom: 20px;
-
     &
     :last-child {
         margin-bottom: 0;
     }
-
     }
     .el-col {
         border-radius: 4px;
         margin-bottom: 20px;
     }
-
     .bg-purple-dark {
         background: #99a9bf;
     }
-
     .bg-purple {
         background: #d3dce6;
     }
-
     .bg-purple-light {
         background: #e5e9f2;
     }
-
     .grid-content {
         border-radius: 4px;
         min-height: 36px;
     }
-
     .row-bg {
         padding: 10px 0;
         background-color: #f9fafc;
     }
-
     .book {
         width: 100%;
         height: 100px;

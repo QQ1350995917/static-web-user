@@ -2,7 +2,7 @@
 const path = require('path')
 const pkg = require('./package.json')
 
-function resolve(dir) {
+function resolve (dir) {
   return path.join(__dirname, dir)
 }
 
@@ -63,7 +63,29 @@ module.exports = {
         },
         onProxyReq: function (proxyReq, req, res) {
           //实在不知道代理后的路径，可以在这里打印出出来看看
-          console.log("原路径：" + req.originalUrl, "代理路径：" + req.path)
+          console.log('原路径：' + req.originalUrl, '代理路径：' + req.path)
+        }
+      },
+      '/book': {
+        target: `http://localhost:11221`,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/book': '/book'
+        },
+        onProxyReq: function (proxyReq, req, res) {
+          //实在不知道代理后的路径，可以在这里打印出出来看看
+          console.log('原路径：' + req.originalUrl, '代理路径：' + req.path)
+        }
+      },
+      '/typeface': {
+        target: `http://localhost:11221`,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/typeface': '/typeface'
+        },
+        onProxyReq: function (proxyReq, req, res) {
+          //实在不知道代理后的路径，可以在这里打印出出来看看
+          console.log('原路径：' + req.originalUrl, '代理路径：' + req.path)
         }
       }
     },
@@ -138,34 +160,34 @@ module.exports = {
             .plugin('ScriptExtHtmlWebpackPlugin')
             .after('html')
             .use('script-ext-html-webpack-plugin', [{
-            // `runtime` must same as runtimeChunk name. default is `runtime`
+              // `runtime` must same as runtimeChunk name. default is `runtime`
               inline: /runtime\..*\.js$/
             }])
             .end()
           config
             .optimization.splitChunks({
-              chunks: 'all',
-              cacheGroups: {
-                libs: {
-                  name: 'chunk-libs',
-                  test: /[\\/]node_modules[\\/]/,
-                  priority: 10,
-                  chunks: 'initial' // only package third parties that are initially dependent
-                },
-                elementUI: {
-                  name: 'chunk-elementUI', // split elementUI into a single package
-                  priority: 20, // the weight needs to be larger than libs and app or it will be packaged into libs or app
-                  test: /[\\/]node_modules[\\/]element-ui[\\/]/
-                },
-                commons: {
-                  name: 'chunk-commons',
-                  test: resolve('src/components'), // can customize your rules
-                  minChunks: 3, //  minimum common number
-                  priority: 5,
-                  reuseExistingChunk: true
-                }
+            chunks: 'all',
+            cacheGroups: {
+              libs: {
+                name: 'chunk-libs',
+                test: /[\\/]node_modules[\\/]/,
+                priority: 10,
+                chunks: 'initial' // only package third parties that are initially dependent
+              },
+              elementUI: {
+                name: 'chunk-elementUI', // split elementUI into a single package
+                priority: 20, // the weight needs to be larger than libs and app or it will be packaged into libs or app
+                test: /[\\/]node_modules[\\/]element-ui[\\/]/
+              },
+              commons: {
+                name: 'chunk-commons',
+                test: resolve('src/components'), // can customize your rules
+                minChunks: 3, //  minimum common number
+                priority: 5,
+                reuseExistingChunk: true
               }
-            })
+            }
+          })
           config.optimization.runtimeChunk('single')
         }
       )

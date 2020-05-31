@@ -76,6 +76,31 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: '/book/search',
+    component: () => import('@/views/book/search'),
+    hidden: true
+  },
+  {
+    path: '/book/book/detail',
+    component: () => import('@/views/book/bookDetail'),
+    hidden: true
+  },
+  {
+    path: '/book/article/detail',
+    component: () => import('@/views/book/articleDetail'),
+    hidden: true
+  },
+  {
+    path: '/typeface',
+    component: () => import('@/views/typeface/font'),
+    hidden: true
+  },
+  {
+    path: '/typeface/painting',
+    component: () => import('@/views/typeface/painting'),
+    hidden: true
+  },
+  {
     path: '',
     component: Layout,
     redirect: 'dashboard',
