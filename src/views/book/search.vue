@@ -20,13 +20,19 @@
             <el-row :gutter="20">
                 <el-col
                         :xs="{span:24,offset:0}" :sm="{span:24,offset:0}" :md="{span:24,offset:0}"
-                        v-for="book in books" v-bind:key="book.id">
-                    <a :href="book.esLinkTo" target="_blank">{{book.esTitle}}</a> - <span>{{book.esType}}</span>
+                        v-for="searchItem in searchResult" v-bind:key="searchItem.id">
+                    <h3>
+                        <a :href="searchItem.esLinkTo" target="_blank" style="color: #0000ff;">
+                            <span v-html="searchItem.esTitle"></span>
+                        </a>
+                        -
+                        <span> 标题</span>
+                    </h3>
                     <!--<router-link target="_blank" :to="{path:'/book/articleDetail',query:{bookId:book.id,articleId:book.id}}">-->
                     <!--<p class="text item book" v-html="book.esTitle"></p>-->
                     <!--</router-link>-->
-                    <p v-html="book.esSummary"></p>
-                    <span :formatter="dateFormat(book.esUpdateTime)">{{book.esUpdateTime}}</span>
+                    <span v-html="content" v-for="content in searchItem.esContent"></span>
+                    <!--<span :formatter="dateFormat(searchItem.esUpdateTime)">{{searchItem.esUpdateTime}}</span>-->
                 </el-col>
             </el-row>
             <el-pagination
@@ -51,7 +57,7 @@
       return {
         input: this.$route.query.keyword,
         activeName: 'first',
-        books: [],
+        searchResult: [],
         index: 1,
         size: 12,
         total: 0
@@ -64,20 +70,18 @@
     },
     methods: {
       onSearch: function (e) {
-        this.index = 1
-        this.total = 0
-        this.books = []
         var e = window.event || e;
         var keyCode = e.keyCode || e.which || e.charCode;
         if (keyCode == 13 && this.input) {
-          this.doSearch(this.input, this.index - 1, this.size)
+          this.doSearch(this.input, this.index, this.size)
         }
       },
       doSearch: function (keyword, index, size) {
-        search(keyword, index, size).then((res) => {
+        search(keyword, index - 1, size).then((res) => {
+          this.searchResult = []
           if (res.meta.code === 200) {
-            this.books = res.data.elements;
-            this.index = res.data.index + 1;
+            this.searchResult = res.data.elements;
+            this.index = res.data.index;
             this.total = res.data.total;
           } else {
             this.$message.error('参数错误')
@@ -94,7 +98,7 @@
       },
       handleCurrentChange: function(currentPage){
         this.index = currentPage;
-        this.doSearch(this.input, this.index - 1, this.size)
+        this.doSearch(this.input, this.index, this.size)
       },
     }
   }

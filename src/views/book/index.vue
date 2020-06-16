@@ -20,7 +20,7 @@
             <el-row :gutter="20">
                 <el-col
                         :xs="{span:24,offset:0}" :sm="{span:12,offset:0}" :md="{span:6,offset:0}"
-                        v-for="book in books" v-bind:key="book.id">
+                        v-for="book in searchResult" v-bind:key="book.id">
                     <router-link target="_blank" :to="{path:'/book/book/detail',query:{bookId:book.id}}">
                         <el-button class="text item book">
                             {{book.title}}
@@ -49,7 +49,7 @@
         index: 1,
         size: 12,
         total: 0,
-        books: []
+        searchResult: []
       }
     },
     mounted: function () {
@@ -65,9 +65,9 @@
       },
       requestBooks: function (index, size) {
         requestBooksApi(index - 1, size).then((res) => {
-          this.books = []
+          this.searchResult = []
           if (res.meta.code === 200) {
-            this.books = res.data.elements;
+            this.searchResult = res.data.elements;
             this.index = res.data.index + 1;
             this.size = res.data.size;
             this.total = res.data.total;
