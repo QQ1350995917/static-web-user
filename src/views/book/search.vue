@@ -22,11 +22,17 @@
                         :xs="{span:24,offset:0}" :sm="{span:24,offset:0}" :md="{span:24,offset:0}"
                         v-for="searchItem in searchResult" v-bind:key="searchItem.id">
                     <h3>
-                        <a :href="searchItem.esLinkTo" target="_blank" style="color: #0000ff;">
-                            <span v-html="searchItem.esTitle"></span>
-                        </a>
-                        -
-                        <span> 标题</span>
+                        <router-link  v-if="searchItem.esIndex == 'article'" target=“_blank” :to="{path:'/book/article/detail',query:{articleId:searchItem.esId}}">
+                            <span style="color: #0000ff;" class="text item book" v-html="searchItem.esTitle"></span>
+                            -
+                            <span> 文章</span>
+                        </router-link>
+                        <router-link  v-if="searchItem.esIndex == 'book'" target=“_blank” :to="{path:'/book/book/detail',query:{bookId:searchItem.esId}}">
+                            <span style="color: #0000ff;" class="text item book" v-html="searchItem.esTitle"></span>
+                            -
+                            <span> 图书</span>
+                        </router-link>
+
                     </h3>
                     <!--<router-link target="_blank" :to="{path:'/book/articleDetail',query:{bookId:book.id,articleId:book.id}}">-->
                     <!--<p class="text item book" v-html="book.esTitle"></p>-->
